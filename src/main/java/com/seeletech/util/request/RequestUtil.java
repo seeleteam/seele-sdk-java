@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seeletech.model.Command;
 import com.seeletech.model.dto.RequestDTO;
-
 import java.util.Date;
 
 public class RequestUtil {

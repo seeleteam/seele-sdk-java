@@ -1,12 +1,11 @@
 package com.seeletech.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import org.hibernate.validator.constraints.NotBlank;
 
 public class RawTx {
-    @NotBlank(message="from address can not be empty")
+
     private String from;
-    @NotBlank(message="from address can not be empty")
+
     private String to;
 
     private long amount;

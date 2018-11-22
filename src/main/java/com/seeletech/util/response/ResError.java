@@ -1,7 +1,8 @@
 package com.seeletech.util.response;
 
 public class ResError {
-        private int code;
+
+    private int code;
 
     public int getCode() {
         return code;

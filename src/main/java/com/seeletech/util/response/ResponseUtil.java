@@ -1,6 +1,7 @@
 package com.seeletech.util.response;
 
 public class ResponseUtil {
+
     public int getId() {
         return id;
     }
@@ -26,7 +27,9 @@ public class ResponseUtil {
     }
 
     private int id;
+
     private String jsonrpc;
+
     private ResError error;
 
     public String getResult() {

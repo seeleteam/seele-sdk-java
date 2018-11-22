@@ -15,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.springframework.util.StringUtils;
-
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Map;

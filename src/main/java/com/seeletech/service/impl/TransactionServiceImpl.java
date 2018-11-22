@@ -17,7 +17,6 @@ import com.seeletech.util.request.RequestUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.ethereum.crypto.ECKey;
 import org.spongycastle.util.encoders.Hex;
-import java.security.*;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
