@@ -1,7 +1,8 @@
-package com.seeletech.service.impl;
+package com.seeletech.core.transaction;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.seeletech.model.RawTx;
 import com.seeletech.model.SeeleSignature;
 import com.seeletech.model.Transaction;
@@ -20,7 +21,7 @@ import org.spongycastle.util.encoders.Hex;
 import java.util.Base64;
 
 
-public class TransactionServiceImpl{
+public class SeeleTransactionManager {
 
     public static String sign(SignTransactionDTO transactionDTO) throws BaseException {
         HttpResult httpResult = new HttpResult();
@@ -37,7 +38,15 @@ public class TransactionServiceImpl{
             httpResult.setErrMsg("objectToMap failed:"+e.getMessage());
             return JSON.toJSONString(httpResult);
         }
-        return JSON.toJSONString(httpResult);
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "";
+        try {
+          json = mapper.writeValueAsString(httpResult);
+        } catch (JsonProcessingException e) {
+            httpResult.setErrMsg("json serialize failed:"+e.getMessage());
+            return JSON.toJSONString(httpResult);
+        }
+        return json;
     }
 
     /**
@@ -80,8 +89,6 @@ public class TransactionServiceImpl{
          httpResult =  HttpClientUitl.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT,null,null);
          return JSON.toJSONString(httpResult);
     }
-
-
 
     private static Transaction generateTransaction(SignTransactionDTO transactionDTO) throws BaseException {
         String privatekey = transactionDTO.getPrivateKey();
@@ -165,13 +172,13 @@ public class TransactionServiceImpl{
         rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");//
         rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
         rawTx.setAmount(0);
-        rawTx.setAccountNonce(0);
+        rawTx.setAccountNonce(1);
         rawTx.setTimestamp(0);
         rawTx.setPayload("");
         rawTx.setGasPrice(1);
         rawTx.setGasLimit(3000000);
         signTransactionDTO.setRawTx(rawTx);
-        String b = TransactionServiceImpl.gettxbyhash("0xa489ac38226716ce9cb7f72a41ac09e77599599df0c2f80152870461b55a1b98","http://127.0.0.1:8037");
+        String b = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
         System.out.println(b);
     }
 }

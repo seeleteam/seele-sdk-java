@@ -15,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.springframework.util.StringUtils;
-import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.UUID;
@@ -55,7 +54,6 @@ public class HttpClientUitl {
             }else{
                 HttpEntity httpEntity = response.getEntity();
                 if (httpEntity != null){
-                    InputStream instreams = httpEntity.getContent();
                     String str =  EntityUtils.toString(httpEntity,"UTF-8");
                     ResponseUtil res = JSON.parseObject(str, new TypeReference<ResponseUtil>() {});
                     if(res.getError() != null){
@@ -69,7 +67,6 @@ public class HttpClientUitl {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             result.setErrMsg("err："+e.getMessage());
         }finally{
             if(post != null){
@@ -77,7 +74,6 @@ public class HttpClientUitl {
                     post.releaseConnection();
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
                     result.setErrMsg("err："+e.getMessage());
                 }
             }

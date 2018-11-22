@@ -1,4 +1,4 @@
-package com.seeletech.service.impl;
+package com.seeletech.core.key;
 
 import com.alibaba.fastjson.JSON;
 import com.seeletech.util.HttpResult;
@@ -7,7 +7,7 @@ import org.spongycastle.util.encoders.Hex;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KeyServiceImpl {
+public class KeyManager {
     /**
      * generate the private key
      * @return
@@ -22,6 +22,6 @@ public class KeyServiceImpl {
         return JSON.toJSONString(httpResult);
     }
     public static void main(String[] args){
-        System.out.println(KeyServiceImpl.key());
+        System.out.println(KeyManager.key());
     }
 }

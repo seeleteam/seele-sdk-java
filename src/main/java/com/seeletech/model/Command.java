@@ -9,7 +9,7 @@ public class Command {
     private static Map<String, List<String>> commandMap ;
     static{
         commandMap = new HashMap<String,List<String>>();
-        commandMap.put("seele", Arrays.asList("getInfo","getBalance", "addTx", "getAccountNonce", "getBlockHeight", "getBlock", "call", "getLogs", "generatePayload", "estimateGas","key"));
+        commandMap.put("seele", Arrays.asList("getInfo","getBalance", "addTx", "getAccountNonce", "getBlockHeight", "getBlock", "call", "getLogs", "generatePayload", "estimateGas"));
         commandMap.put("txpool", Arrays.asList("getBlockTransactionCount","getTransactionByBlockIndex", "getTransactionByHash", "getReceiptByTxHash", "getDebtByHash"));
         commandMap.put("network", Arrays.asList("getPeersInfo", "getPeerCount", "getNetworkVersion", "getProtocolVersion", "getNetworkID", "isListening"));
         commandMap.put("miner", Arrays.asList("start", "stop", "status", "getCoinbase", "setThreads", "setCoinbase", "getEngineInfo"));
