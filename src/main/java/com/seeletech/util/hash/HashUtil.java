@@ -20,8 +20,12 @@ public class HashUtil {
             a[4] =  ByteUtil.longToBytesNoLeadZeroes(tx.getData().getGasPrice());
             a[5] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getGasLimit());
             a[6] =  ByteUtil.longToBytesNoLeadZeroes(tx.getData().getTimestamp());
-            if(!StringUtils.isEmpty(tx.getData().getPayload())){
-                a[7] = Hex.decode(tx.getData().getPayload().trim().substring(2));
+            if(null != tx.getData().getPayload()){
+                if(!"".equals(tx.getData().getPayload())){
+                    a[7] = Hex.decode(tx.getData().getPayload().trim().substring(2));
+                }else{
+                    a[7] = Hex.decode(tx.getData().getPayload().trim());
+                }
             }
         }catch(Exception e){
             throw new Exception("BeanTohash failed");

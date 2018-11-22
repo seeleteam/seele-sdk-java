@@ -3,10 +3,8 @@ package com.seeletech.model.dto;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.seeletech.model.RawTx;
 import com.seeletech.model.SeeleSignature;
-import org.hibernate.validator.constraints.NotBlank;
 
 public class AddTransactionDTO {
-    @NotBlank(message = "hash can not be empty")
     private String hash;
     private RawTx data;
     private SeeleSignature signature;
