@@ -7,13 +7,12 @@ Example
 
 sign（签名）
 
-Method：String sign(SignTransactionDTO transactionDTO)
+Method：static String sign(SignTransactionDTO transactionDTO)
 
 Generate transaction and sign, the rawTx transactionDTO be in the example format, otherwise an error will occur.
 
 example：
 
-TransactionServiceImpl transactionServiceImpl = new TransactionServiceImpl();
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
         RawTx rawTx = new RawTx();
@@ -25,7 +24,7 @@ TransactionServiceImpl transactionServiceImpl = new TransactionServiceImpl();
         rawTx.setGasPrice(1);
         rawTx.setGasLimit(3000000);
         signTransactionDTO.setRawTx(rawTx);
-        String jsonStr = transactionServiceImpl.sign(signTransactionDTO);
+        String jsonStr = TransactionServiceImpl.sign(signTransactionDTO);
 
 
 success return：
@@ -40,13 +39,12 @@ fail return:
 
 sendTx（发送交易/转账）
 
-Method:String sendTx(SignTransactionDTO signTransactionDTO,String uri)
+Method:statci String sendTx(SignTransactionDTO signTransactionDTO,String uri)
 
 send transaction , the SignTransactionDTO must be in the example format, otherwise an error will occur.
 
 example：
 
-TransactionServiceImpl transactionServiceImpl = new TransactionServiceImpl();
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
         RawTx rawTx = new RawTx();
@@ -58,7 +56,7 @@ TransactionServiceImpl transactionServiceImpl = new TransactionServiceImpl();
         rawTx.setGasPrice(1);
         rawTx.setGasLimit(3000000);
         signTransactionDTO.setRawTx(rawTx);
-       String jsonStr = transactionServiceImpl.sendTx(signTransactionDTO, " http://127.0.0.1:8037");
+       String jsonStr = TransactionServiceImpl.sendTx(signTransactionDTO, " http://127.0.0.1:8037");
 
 success return：
 {
@@ -78,15 +76,14 @@ fail return：
 
 gettxbyhash（根据hash获取交易信息）
 
-Method:String gettxbyhash(String hash,String uri)
+Method:static String gettxbyhash(String hash,String uri)
 
 get transaction by hash, the hash must be in the example format(64 length), otherwise an error will occur.
 
 example：
 
-TransactionServiceImpl transactionServiceImpl = new TransactionServiceImpl();
 
-String jsonStr = transactionServiceImpl.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://localhost:8089");
+String jsonStr = TransactionServiceImpl.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://localhost:8089");
 
 
 
@@ -125,15 +122,13 @@ fail return ：
 
 key（生成私钥）
 
-Method:String key()
+Method:static String key()
 
 generate the private key 
 
 example：
 
-TransactionServiceImpl transactionServiceImpl = new TransactionServiceImpl();
-
-String jsonStr = transactionServiceImpl.key("http://127.0.0.1:8037");
+String jsonStr = TransactionServiceImpl.key("http://127.0.0.1:8037");
 
 
 success return ：
@@ -143,3 +138,20 @@ success return ：
 				"private key":"0x338ed964bf839a87923a990d08d3435b4f27cc89cdc025ca019a7e60812fbafe"
 			}
 }
+
+
+getAddress
+
+Method: static byte[] getAddress(byte[] publicKey)
+
+get public address by publicKey
+
+example：
+ String pubString = "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
+ byte[] pubKey = Hex.decode(pubString);
+
+ AddressServiceImpl.getAddress(pubKey);
+
+
+
+
