@@ -1,7 +1,13 @@
-demo：
+seele-sdk-java
+
+seele-sdk-java is a generic java API library for the Seele blockchain.
+
+
+Example
 
 sign（签名）
-String sign(SignTransactionDTO transactionDTO)
+
+Method：String sign(SignTransactionDTO transactionDTO)
 
 Generate transaction and sign, the rawTx transactionDTO be in the example format, otherwise an error will occur.
 
@@ -31,9 +37,10 @@ fail return:
 	errMsg: “generateTx failed:”
 }
 
+
 sendTx（发送交易/转账）
 
-String sendTx(SignTransactionDTO signTransactionDTO,String uri)
+Method:String sendTx(SignTransactionDTO signTransactionDTO,String uri)
 
 send transaction , the SignTransactionDTO must be in the example format, otherwise an error will occur.
 
@@ -71,7 +78,7 @@ fail return：
 
 gettxbyhash（根据hash获取交易信息）
 
-String gettxbyhash(String hash,String uri)
+Method:String gettxbyhash(String hash,String uri)
 
 get transaction by hash, the hash must be in the example format(64 length), otherwise an error will occur.
 
@@ -118,9 +125,9 @@ fail return ：
 
 key（生成私钥）
 
-String key()
+Method:String key()
 
-generate private key 
+generate the private key 
 
 example：
 
