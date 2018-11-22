@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{HH:mm:ss:SSS}][%p][%t][%c.%M:%L] - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="d:/seelejavasdk/seelejavasdk.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{HH:mm:ss:SSS}][%p][%t][%c.%M:%L] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="info"/>
+        </filter>
+    </appender>
+
+    <!-- use for test -->
+<!--    <category name="java.sql" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </category>
+
+    <category name="com.alibaba.dubbo.monitor" additivity="false">
+        <priority value="warn"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </category>
+
+
+    <category name="com.alibaba.dubbo" additivity="false">
+        <priority value="warn"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </category>-->
+
+    <category name="org.springframework" additivity="false">
+        <priority value="warn"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </category>
+
+
+    <root>
+        <priority value="info"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</log4j:configuration> 
