@@ -23,6 +23,12 @@ import java.util.Base64;
 
 public class SeeleTransactionManager {
 
+    /**
+     * create a transaction and sign it,if any error occur then return error message,otherwise return a json string
+     * @param transactionDTO
+     * @return String
+     * @throws BaseException
+     */
     public static String sign(SignTransactionDTO transactionDTO) throws BaseException {
         HttpResult httpResult = new HttpResult();
         String msg = checkBlank(transactionDTO);
@@ -50,10 +56,10 @@ public class SeeleTransactionManager {
     }
 
     /**
-     * send transaction
+     * send transaction,if any error occur then return error message,otherwise return a json string
      * @param signTransactionDTO
      * @param uri
-     * @return
+     * @return String
      */
     public static String sendTx(SignTransactionDTO signTransactionDTO,String uri) {
         HttpResult httpResult = new HttpResult();
@@ -72,10 +78,10 @@ public class SeeleTransactionManager {
     }
 
     /**
-     * get transaction by hash
+     * get transactions by hash,if any error occur then return error message,otherwise return a json string
      * @param hash
      * @param uri
-     * @return
+     * @return String
      */
     public static String gettxbyhash(String hash,String uri) {
         String requestJson = null;
@@ -90,6 +96,12 @@ public class SeeleTransactionManager {
          return JSON.toJSONString(httpResult);
     }
 
+    /**
+     * generate a transaction,if any error occur then throw a exception,otherwise return Transaction object
+     * @param transactionDTO
+     * @return Transaction
+     * @throws BaseException
+     */
     private static Transaction generateTransaction(SignTransactionDTO transactionDTO) throws BaseException {
         String privatekey = transactionDTO.getPrivateKey();
         if (privatekey.startsWith("0x")) {
@@ -113,6 +125,14 @@ public class SeeleTransactionManager {
         return tx;
     }
 
+    /**
+     * send transaciotn to go server by JSON-RPC
+     * @param methodName
+     * @param transaction
+     * @param httpResult
+     * @param uri
+     * @return HttpResult
+     */
     private static HttpResult addTx(String methodName, AddTransactionDTO transaction, HttpResult httpResult,String uri){
         String msg = checkBlank(transaction);
         if(!StringUtils.isEmpty(msg)){
@@ -129,7 +149,11 @@ public class SeeleTransactionManager {
         return HttpClientUitl.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT,null,null);
     }
 
-
+    /**
+     * transfer SignTransactionDTO to AddTransactionDTO,if any error occur return null,otherwise return  AddTransactionDTO object
+     * @param signTransactionDTO
+     * @return AddTransactionDTO
+     */
     private static AddTransactionDTO getAddTransactionDTO(SignTransactionDTO signTransactionDTO){
         Transaction transaction = null;
         try{
@@ -144,6 +168,11 @@ public class SeeleTransactionManager {
         }
     }
 
+    /**
+     * check the object field whether blank,if the filed is blank then return error message,otherwise return a empty String
+     * @param obj
+     * @return String
+     */
     private static  String checkBlank(Object obj) {
         String msg = "";
         if(obj instanceof  AddTransactionDTO){
@@ -165,20 +194,4 @@ public class SeeleTransactionManager {
         return msg;
     }
 
-    public static void main(String[] args){
-        SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
-        signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
-        RawTx rawTx = new RawTx();
-        rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");//
-        rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
-        rawTx.setAmount(0);
-        rawTx.setAccountNonce(1);
-        rawTx.setTimestamp(0);
-        rawTx.setPayload("");
-        rawTx.setGasPrice(1);
-        rawTx.setGasLimit(3000000);
-        signTransactionDTO.setRawTx(rawTx);
-        String b = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
-        System.out.println(b);
-    }
 }

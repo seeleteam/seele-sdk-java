@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+# Test binary, build with `go test -c`
+*.test
+
+# intellij idea
+.idea/
+*.iml
+target
+.git

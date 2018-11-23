@@ -81,7 +81,10 @@ public class HttpClientUitl {
         return result;
     }
 
-    // 构建唯一会话Id
+    /**
+     * create a unique session id
+     * @return String
+     */
     public static String getSessionId(){
         UUID uuid = UUID.randomUUID();
         String str = uuid.toString();
