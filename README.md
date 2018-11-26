@@ -1,18 +1,18 @@
-SEELE-SDK-JAVA
+=SEELE-SDK-JAVA
 
 seele-sdk-java is a generic java API library for the Seele blockchain.
 the program is a maven project
 ------------------------------------------------------------------------------
 
-Methods
+=Methods
 
 	Mehtod:Sign
 
-	API£ºstatic String sign(SignTransactionDTO transactionDTO)
+	APIï¼šstatic String sign(SignTransactionDTO transactionDTO)
 
 	Generate transaction and sign, the rawTx transactionDTO be in the example format, otherwise an error will occur.
 
-	example£º
+	exampleï¼š
 
 				SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
@@ -27,7 +27,7 @@ Methods
         signTransactionDTO.setRawTx(rawTx);
         String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
 
-	success return£º
+	success returnï¼š
 	{
 		"result":
 			{"data":
@@ -62,7 +62,7 @@ Methods
 
 	send transaction , the SignTransactionDTO must be in the example format, otherwise an error will occur.
 
-	example£º
+	exampleï¼š
 
 				SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
       	signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
@@ -77,7 +77,7 @@ Methods
         signTransactionDTO.setRawTx(rawTx);
        	String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.50.20.225:8037");
 
-	success return£º
+	success returnï¼š
 	{
 		"result":{
 				"result":true,
@@ -86,7 +86,7 @@ Methods
 		}
 	}
 
-	fail return£º
+	fail returnï¼š
 	{
 		errMsg: "error:addTransactionDTO is null"
 	}
@@ -99,11 +99,11 @@ Methods
 
 	get transaction by hash, the hash must be in the example format(64 length), otherwise an error will occur.
 
-	example£º
+	exampleï¼š
 
 				String jsonStr = SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://117.50.20.225:8037");
 
-	success return£º
+	success returnï¼š
 	{
 		"result":
 			{"result":
@@ -129,7 +129,7 @@ Methods
 	 	}
 	}
 	
-	fail return £º
+	fail return ï¼š
 	{
 		errMsg: "leveldb: not found"
 	}
@@ -142,12 +142,12 @@ Methods
 
 	generate the private key ,the parameter shard must between 1 and 2
 
-	example£º
+	exampleï¼š
 
 			String jsonStr = KeyManager.key(1);
 
 
-	success return £º
+	success return ï¼š
 	{
 		"result":
 			{
@@ -164,7 +164,7 @@ Methods
 
 	get public address by publicKey
 
-	example£º
+	exampleï¼š
 
  			String pubString = "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
  			byte[] pubKey = Hex.decode(pubString);
