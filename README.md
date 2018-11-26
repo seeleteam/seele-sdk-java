@@ -1,7 +1,7 @@
 # SEELE-SDK-JAVA
 
-seele-sdk-java is a generic java API library for the Seele blockchain.
-the program is a maven project
+SEELE-SDK-JAVA is a generic java API library for the Seele blockchain.<br>
+The program is a maven project.
 
 
 # Methods
@@ -13,7 +13,7 @@ the program is a maven project
 	Generate transaction and sign, the rawTx transactionDTO be in the example format, otherwise an error will occur.
 
 	example：
-
+```java
 		SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         	signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
        	 	RawTx rawTx = new RawTx();
@@ -25,8 +25,9 @@ the program is a maven project
         	rawTx.setGasPrice(1);
         	rawTx.setGasLimit(3000000);
         	signTransactionDTO.setRawTx(rawTx);
+		
         	String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
-
+```
 		success return：
 		{
 			"result":
@@ -64,7 +65,8 @@ the program is a maven project
 	send transaction , the SignTransactionDTO must be in the example format, otherwise an error will occur.
 
 	example：
-
+	
+```java
 		SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
       		signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
        		RawTx rawTx = new RawTx();
@@ -76,8 +78,9 @@ the program is a maven project
         	rawTx.setGasPrice(1);
         	rawTx.setGasLimit(3000000);
         	signTransactionDTO.setRawTx(rawTx);
+		
        		String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.50.20.225:8037");
-
+```
 		success return：
 		{
 			"result":
@@ -102,9 +105,9 @@ the program is a maven project
 	get transaction by hash, the hash must be in the example format(64 length), otherwise an error will occur.
 
 	example：
-
+```java
 		String jsonStr = SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://117.50.20.225:8037");
-
+```
 		success return：
 		{
 			"result":
@@ -146,8 +149,9 @@ the program is a maven project
 	generate the private key ,the parameter shard must between 1 and 2
 
 	example：
-
+```java
 		String jsonStr = KeyManager.key(1);
+```
 
 		success return ：
 		{
@@ -167,10 +171,11 @@ the program is a maven project
 	get public address by publicKey
 
 	example：
-
+```java
  		String pubString = "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
  		byte[] pubKey = Hex.decode(pubString);
  		String jsonStr = AddressManager.getAddress(pubKey);
+```
 
 ------------------------------------------------------------------------------
 		
