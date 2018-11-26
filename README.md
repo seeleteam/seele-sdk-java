@@ -43,9 +43,9 @@ The program is a maven project.
 					"timestamp":0,
 					"payload":""
 			   	},
-			  	"signature":
-			   	{
-																						"sig":"ob6nXGQy7VKylMPHJTfmxbsJZVQr6HdV2U/dYF/bc9kIU55u/2HMWo16ngsIWlo87aZCqlUY6H5h1+boImfDowA="
+			  	"signature:
+				{
+					"sig":"ob6nXGQy7VKylMPHJTfmxbsJZVQr6HdV2U/dYF/bc9kIU55u/2HMWo16ngsIWlo87aZCqlUY6H5h1+boImfDowA="
 			   	},
 			  	"hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057"
 		 	}
