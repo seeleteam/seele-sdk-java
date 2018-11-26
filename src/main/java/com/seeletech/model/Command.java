@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Command {
+
     private static Map<String, List<String>> commandMap ;
     static{
         commandMap = new HashMap<String,List<String>>();
@@ -21,6 +22,7 @@ public class Command {
                 return entry.getKey();
             }
         }
+
         return "";
     }
 }

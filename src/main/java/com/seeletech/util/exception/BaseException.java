@@ -1,9 +1,10 @@
 package com.seeletech.util.exception;
 /**
- * 基础异常
+ * base exception
  *
  */
 public class BaseException extends RuntimeException {
+
 	public BaseException() {
 		super();
 	}

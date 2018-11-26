@@ -1,6 +1,7 @@
 package com.seeletech.model.dto;
 
 public class RequestDTO {
+
     private Long id;
 
     public Object[] getParams() {
@@ -12,6 +13,7 @@ public class RequestDTO {
     }
 
     private Object[] params;
+
     private String method;
 
     public Long getId() {

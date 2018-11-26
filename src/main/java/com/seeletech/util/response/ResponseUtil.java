@@ -2,6 +2,16 @@ package com.seeletech.util.response;
 
 public class ResponseUtil {
 
+    private int id;
+
+    private String jsonrpc;
+
+    private ResError error;
+
+    private String result;
+
+    private ResSuccess success;
+
     public int getId() {
         return id;
     }
@@ -26,12 +36,6 @@ public class ResponseUtil {
         this.error = error;
     }
 
-    private int id;
-
-    private String jsonrpc;
-
-    private ResError error;
-
     public String getResult() {
         return result;
     }
@@ -40,8 +44,6 @@ public class ResponseUtil {
         this.result = result;
     }
 
-    private String result;
-
     public ResSuccess getSuccess() {
         return success;
     }
@@ -49,6 +51,4 @@ public class ResponseUtil {
     public void setSuccess(ResSuccess success) {
         this.success = success;
     }
-
-    private ResSuccess success;
 }

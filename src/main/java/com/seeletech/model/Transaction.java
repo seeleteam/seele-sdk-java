@@ -2,9 +2,12 @@ package com.seeletech.model;
 
 
 public class Transaction {
+
     private RawTx data;
 
     private SeeleSignature signature;
+
+    private String hash;
 
     public SeeleSignature getSignature() {
         return signature;
@@ -14,7 +17,6 @@ public class Transaction {
         this.signature = signature;
     }
 
-
     public String getHash() {
         return hash;
     }
@@ -22,8 +24,6 @@ public class Transaction {
     public void setHash(String hash) {
         this.hash = hash;
     }
-
-    private String hash;
 
     public RawTx getData() {
         return data;
@@ -36,5 +36,6 @@ public class Transaction {
     public Transaction(RawTx data){
         this.data = data;
     }
+
     public Transaction(){}
 }

@@ -6,13 +6,14 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class BeanUtil {
+
     /**
-     *  获取javabean的字段
-     * @param o 对象
-     * @return 字段数组
+     * Convert bean object fields to arrays
+     * @param o
+     * @return  String[]
      */
     public static String[] getField(Object o) {
-        String[] bxgs = null;// 不需要修改字段
+        String[] bxgs = null;
         try {
             if (o != null) {
                 String bxg = "";
@@ -20,16 +21,11 @@ public class BeanUtil {
                 Iterator iter = sss.entrySet().iterator();
                 while (iter.hasNext()) {
                     Map.Entry entry = (Map.Entry) iter.next();
-                    /*
-                     * //key 字段名称 val字段值 Object key = entry.getKey(); Object val
-                     * = entry.getValue();
-                     */
                     if (entry.getKey() != null && !"class".equals(entry.getKey())) {
                         if(null != entry.getValue()){
                             bxg += entry.getValue().toString() + ",";
                         }
                     }
-
                 }
 
                 if (bxg.length() > 1) {
@@ -44,8 +40,13 @@ public class BeanUtil {
         return bxgs;
     }
 
+    /**
+     * Convert bean object fields to arrays in order
+     * @param o
+     * @return
+     */
     public static String[] getFieldForSort(Object o) {
-        String[] bxgs = null ;// 不需要修改字段
+        String[] bxgs = null ;
         try {
             if (o != null) {
                 Map sss = org.apache.commons.beanutils.BeanUtils.describe(o);
@@ -53,10 +54,6 @@ public class BeanUtil {
                 bxgs = new String[sss.size()-1];
                 while (iter.hasNext()) {
                     Map.Entry entry = (Map.Entry) iter.next();
-                    /*
-                     * //key 字段名称 val字段值 Object key = entry.getKey(); Object val
-                     * = entry.getValue();
-                     */
                     if (entry.getKey() != null && !"class".equals(entry.getKey())) {
                         if("from".equals(entry.getKey())){
                             bxgs[0] = (String)entry.getValue();
@@ -76,7 +73,6 @@ public class BeanUtil {
                             bxgs[7] = (String)entry.getValue();
                         }
                     }
-
                 }
             }
         } catch (Exception e) {
@@ -91,13 +87,14 @@ public class BeanUtil {
         if(obj == null){
             return null;
         }
-        Map<String, Object> map = new HashMap<String, Object>();
 
+        Map<String, Object> map = new HashMap<String, Object>();
         Field[] declaredFields = obj.getClass().getDeclaredFields();
         for (Field field : declaredFields) {
             field.setAccessible(true);
             map.put(field.getName(), field.get(obj));
         }
+
         return map;
     }
 }

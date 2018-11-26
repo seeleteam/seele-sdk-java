@@ -4,6 +4,8 @@ public class ResError {
 
     private int code;
 
+    private String message;
+
     public int getCode() {
         return code;
     }
@@ -19,6 +21,4 @@ public class ResError {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    private String message;
 }

@@ -11,14 +11,15 @@ public class AddressManager {
      * @param publicKey byte[]
      * @return byte[]
      */
-    public static byte[] getAddress(byte[] publicKey){
-        byte[] temp = Arrays.copyOfRange(publicKey,1,publicKey.length);
+    public static byte[] getAddress(byte[] publicKey) {
+        byte[] temp = Arrays.copyOfRange(publicKey, 1, publicKey.length);
         byte[] hash = HashUtil.sha3(RLP.encode(temp));
         byte b = 1;
-        byte[] addr = Arrays.copyOfRange(hash,hash.length-20,hash.length);
+        byte[] addr = Arrays.copyOfRange(hash, hash.length - 20, hash.length);
+
         addr[19] &= 0xF0;
         addr[19] |= b;
+
         return addr;
     }
-
 }

@@ -3,8 +3,11 @@ package com.seeletech.model.dto;
 import com.seeletech.model.RawTx;
 
 public class SignTransactionDTO {
+
     private String privateKey;
+
     private RawTx rawTx;
+
     public String getPrivateKey() {
         return privateKey;
     }

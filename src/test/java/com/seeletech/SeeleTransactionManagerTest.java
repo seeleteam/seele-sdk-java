@@ -3,10 +3,12 @@ package com.seeletech;
 import com.seeletech.core.transaction.SeeleTransactionManager;
 import com.seeletech.model.RawTx;
 import com.seeletech.model.dto.SignTransactionDTO;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SeeleTransactionManagerTest {
 
+    @Ignore
     @Test
     public void testSign(){
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
@@ -24,6 +26,7 @@ public class SeeleTransactionManagerTest {
         System.out.println(SeeleTransactionManager.sign(signTransactionDTO));
     }
 
+    @Ignore
     @Test
     public void testSendTx(){
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
@@ -41,8 +44,9 @@ public class SeeleTransactionManagerTest {
         System.out.println(SeeleTransactionManager.sendTx(signTransactionDTO,"http://117.50.20.225:8037"));
     }
 
+    @Ignore
     @Test
     public void testGettxbyhash(){
-        System.out.println(SeeleTransactionManager.gettxbyhash("0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057","http://117.50.20.225:8037"));
+        System.out.println(SeeleTransactionManager.getTxByHash("0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057","http://117.50.20.225:8037"));
     }
 }

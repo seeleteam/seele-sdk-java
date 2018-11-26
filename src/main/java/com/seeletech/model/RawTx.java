@@ -28,6 +28,7 @@ public class RawTx {
     public void setFrom(String from) {
         this.from = from;
     }
+
     @JSONField(name = "To")
     public String getTo() {
         return to;
@@ -36,6 +37,7 @@ public class RawTx {
     public void setTo(String to) {
         this.to = to;
     }
+
     @JSONField(name = "Amount")
     public long getAmount() {
         return amount;
@@ -44,6 +46,7 @@ public class RawTx {
     public void setAmount(long amount) {
         this.amount = amount;
     }
+
     @JSONField(name = "AccountNonce")
     public long getAccountNonce() {
         return accountNonce;
@@ -52,6 +55,7 @@ public class RawTx {
     public void setAccountNonce(long accountNonce) {
         this.accountNonce = accountNonce;
     }
+
     @JSONField(name = "GasPrice")
     public long getGasPrice() {
         return gasPrice;
@@ -60,6 +64,7 @@ public class RawTx {
     public void setGasPrice(long gasPrice) {
         this.gasPrice = gasPrice;
     }
+
     @JSONField(name = "GasLimit")
     public long getGasLimit() {
         return gasLimit;
@@ -68,6 +73,7 @@ public class RawTx {
     public void setGasLimit(long gasLimit) {
         this.gasLimit = gasLimit;
     }
+
     @JSONField(name = "Timestamp")
     public long getTimestamp() {
         return timestamp;
@@ -76,6 +82,7 @@ public class RawTx {
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
+
     @JSONField(name = "Payload")
     public String getPayload() {
         return payload;
