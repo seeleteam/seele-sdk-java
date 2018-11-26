@@ -14,49 +14,48 @@ The program is a maven project.
 
 	example：
 ```java
-		SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
-        	signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
-       	 	RawTx rawTx = new RawTx();
-        	rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
-        	rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
-        	rawTx.setAmount(0);
-        	rawTx.setAccountNonce(0);
-        	rawTx.setTimestamp(0);
-        	rawTx.setGasPrice(1);
-        	rawTx.setGasLimit(3000000);
-        	signTransactionDTO.setRawTx(rawTx);
-		
-        	String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
-```
-		the successful response message is：
-		
-		{
-			"result":
-		 	{
-			  	"data":
-			   	{
-					"from":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
-					"to":"0x0a57a2714e193b7ac50475ce625f2dcfb483d741",
-					"amount":0,
-					"accountNonce":0,
-					"gasPrice":1,
-					"gasLimit":3000000,
-					"timestamp":0,
-					"payload":""
-			   	},
-			  	"signature:
-				{
-					"sig":"ob6nXGQy7VKylMPHJTfmxbsJZVQr6HdV2U/dYF/bc9kIU55u/2HMWo16ngsIWlo87aZCqlUY6H5h1+boImfDowA="
-			   	},
-			  	"hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057"
-		 	}
-		}
+SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
+signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
+RawTx rawTx = new RawTx();
+rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
+rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
+rawTx.setAmount(0);
+rawTx.setAccountNonce(0);
+rawTx.setTimestamp(0);
+rawTx.setGasPrice(1);
+rawTx.setGasLimit(3000000);
+signTransactionDTO.setRawTx(rawTx);
 
-		the failure response message is:
+String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
+```
+the successful response message is：
 		
-		{
-			errMsg: "generateTx failed:"
+{
+	"result":{
+		"data":{
+			"from":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
+			"to":"0x0a57a2714e193b7ac50475ce625f2dcfb483d741",
+			"amount":0,
+			"accountNonce":0,
+			"gasPrice":1,
+			"gasLimit":3000000,
+			"timestamp":0,
+			"payload":""
+			},
+
+			"signature:{
+			"sig":"ob6nXGQy7VKylMPHJTfmxbsJZVQr6HdV2U/dYF/bc9kIU55u/2HMWo16ngsIWlo87aZCqlUY6H5h1+boImfDowA="
+			},
+
+			"hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057"
 		}
+}
+
+the failure response message is:
+		
+{
+	errMsg: "generateTx failed:"
+}
 
 ------------------------------------------------------------------------------
 
@@ -69,19 +68,19 @@ The program is a maven project.
 	example：
 	
 ```java
-		SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
-      		signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
-       		RawTx rawTx = new RawTx();
-        	rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
-        	rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
-       	 	rawTx.setAmount(0);
-        	rawTx.setAccountNonce(0);
-        	rawTx.setTimestamp(0);
-        	rawTx.setGasPrice(1);
-        	rawTx.setGasLimit(3000000);
-        	signTransactionDTO.setRawTx(rawTx);
-		
-       		String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.50.20.225:8037");
+SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
+signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
+RawTx rawTx = new RawTx();
+rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
+rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
+rawTx.setAmount(0);
+rawTx.setAccountNonce(0);
+rawTx.setTimestamp(0);
+rawTx.setGasPrice(1);
+rawTx.setGasLimit(3000000);
+signTransactionDTO.setRawTx(rawTx);
+
+String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.50.20.225:8037");
 ```
 		the successful response message is：
 		
@@ -110,7 +109,7 @@ The program is a maven project.
 
 	example：
 ```java
-		String jsonStr = SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://117.50.20.225:8037");
+String jsonStr = SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://117.50.20.225:8037");
 ```
 		the successful response message is：
 		
@@ -156,7 +155,7 @@ The program is a maven project.
 
 	example：
 ```java
-		String jsonStr = KeyManager.key(1);
+String jsonStr = KeyManager.key(1);
 ```
 
 		the successful response message is ：
@@ -179,9 +178,9 @@ The program is a maven project.
 
 	example：
 ```java
- 		String pubString = "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
- 		byte[] pubKey = Hex.decode(pubString);
- 		String jsonStr = AddressManager.getAddress(pubKey);
+String pubString = "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
+byte[] pubKey = Hex.decode(pubString);
+String jsonStr = AddressManager.getAddress(pubKey);
 ```
 
 ------------------------------------------------------------------------------
