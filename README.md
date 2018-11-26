@@ -53,9 +53,9 @@ the successful response message is：
 
 the failure response message is:
 		
-{
-	errMsg: "generateTx failed:"
-}
+	{
+		errMsg: "generateTx failed:"
+	}
 
 ------------------------------------------------------------------------------
 
