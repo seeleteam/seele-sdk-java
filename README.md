@@ -143,9 +143,9 @@ the successful response message is：
 	
 the failure response message is ：
 		
-{
-	errMsg: "leveldb: not found"
-}
+	{
+		errMsg: "leveldb: not found"
+	}
 
 ------------------------------------------------------------------------------
 
