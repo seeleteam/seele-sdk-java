@@ -1,180 +1,192 @@
-SEELE-SDK-JAVA
+# SEELE-SDK-JAVA
 
-seele-sdk-java is a generic java API library for the Seele blockchain.
-the program is a maven project
-------------------------------------------------------------------------------
+SEELE-SDK-JAVA is a generic java API library for the Seele blockchain.<br>
+The program is a maven project.
 
-Methods
 
-	Mehtod:Sign
+# Methods
 
-	API£ºstatic String sign(SignTransactionDTO transactionDTO)
+## Sign
+
+	APIï¼šstatic String sign(SignTransactionDTO transactionDTO)
 
 	Generate transaction and sign, the rawTx transactionDTO be in the example format, otherwise an error will occur.
 
-	example£º
+	exampleï¼š
+```java
+SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
+signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
+RawTx rawTx = new RawTx();
+rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
+rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
+rawTx.setAmount(0);
+rawTx.setAccountNonce(0);
+rawTx.setTimestamp(0);
+rawTx.setGasPrice(1);
+rawTx.setGasLimit(3000000);
+signTransactionDTO.setRawTx(rawTx);
 
-				SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
-        signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
-        RawTx rawTx = new RawTx();
-        rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
-        rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
-        rawTx.setAmount(0);
-        rawTx.setAccountNonce(0);
-        rawTx.setTimestamp(0);
-        rawTx.setGasPrice(1);
-        rawTx.setGasLimit(3000000);
-        signTransactionDTO.setRawTx(rawTx);
-        String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
+String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
+```
+the successful response message isï¼š
+		
+     {
+	    "result":
+	     {
+		   "data":
+		    {
+		      "from":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
+		      "to":"0x0a57a2714e193b7ac50475ce625f2dcfb483d741",
+		      "amount":0,
+		      "accountNonce":0,
+		      "gasPrice":1,
+		      "gasLimit":3000000,
+		      "timestamp":0,
+		      "payload":""
+		     },
+		      "signature:{
+		      "sig":"ob6nXGQy7VKylMPHJTfmxbsJZVQr6HdV2U/dYF/bc9kIU55u/2HMWo16ngsIWlo87aZCqlUY6H5h1+boImfDowA="
+	             },
+		      "hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057"
+		 }
+         }
 
-	success return£º
-	{
-		"result":
-			{"data":
-				{
-					"from":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
-					"to":"0x0a57a2714e193b7ac50475ce625f2dcfb483d741",
-					"amount":0,
-					"accountNonce":0,
-					"gasPrice":1,
-					"gasLimit":3000000,
-					"timestamp":0,
-					"payload":""
-				},
-				"signature":
-				{
-						"sig":"ob6nXGQy7VKylMPHJTfmxbsJZVQr6HdV2U/dYF/bc9kIU55u/2HMWo16ngsIWlo87aZCqlUY6H5h1+boImfDowA="
-				},
-				"hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057"
-			}
-	}
-
-	fail return:
+the failure response message is:
+		
 	{
 		errMsg: "generateTx failed:"
 	}
 
 ------------------------------------------------------------------------------
 
-	Method:SendTx
+## SendTx
 
-	API:statci String sendTx(SignTransactionDTO signTransactionDTO,String uri)
+	API:static String sendTx(SignTransactionDTO signTransactionDTO,String uri)
 
 	send transaction , the SignTransactionDTO must be in the example format, otherwise an error will occur.
 
-	example£º
+	exampleï¼š
+	
+```java
+SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
+signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
+RawTx rawTx = new RawTx();
+rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
+rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
+rawTx.setAmount(0);
+rawTx.setAccountNonce(0);
+rawTx.setTimestamp(0);
+rawTx.setGasPrice(1);
+rawTx.setGasLimit(3000000);
+signTransactionDTO.setRawTx(rawTx);
 
-				SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
-      	signTransactionDTO.setPrivateKey("0xd738b0c1198e55050f754bdf0f824ee4febd962a6b751faab86c081ad5033b0d");
-        RawTx rawTx = new RawTx();
-        rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
-        rawTx.setFrom("0xb265a2e04087a9a83492ffe191316f46b4730751");
-        rawTx.setAmount(0);
-        rawTx.setAccountNonce(0);
-        rawTx.setTimestamp(0);
-        rawTx.setGasPrice(1);
-        rawTx.setGasLimit(3000000);
-        signTransactionDTO.setRawTx(rawTx);
-       	String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.50.20.225:8037");
-
-	success return£º
-	{
-		"result":{
+String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.50.20.225:8037");
+```
+		the successful response message isï¼š
+		
+		{
+			"result":
+			{
 				"result":true,
 				"id":1542684211408,
 				"jsonrpc":"2.0"
+			}
 		}
-	}
 
-	fail return£º
-	{
-		errMsg: "error:addTransactionDTO is null"
-	}
+		the failure response message isï¼š
+		
+		{
+			errMsg: "error:addTransactionDTO is null"
+		}
 
 ------------------------------------------------------------------------------
 
-	Method:Gettxbyhash
+## Gettxbyhash
 
 	API:static String gettxbyhash(String hash,String uri)
 
 	get transaction by hash, the hash must be in the example format(64 length), otherwise an error will occur.
 
-	example£º
-
-				String jsonStr = SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://117.50.20.225:8037");
-
-	success return£º
-	{
-		"result":
-			{"result":
-				{
-					"blockHash":"0x00000152de8784bc264cc43d05b1ac5da040141aeb087ca01761a2028b6fd7f7",
-			 		"blockHeight":3,
-			 		"transaction":
-			 			{
-			 				"gasLimit":3000000,
-			 		 		"amount":0,
-			 		 		"payload":"",
-			 		 		"from":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
-			 		 		"to":"0x0a57a2714e193b7ac50475ce625f2dcfb483d741",
-			 		 		"accountNonce":0,
-			 		 		"hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057",
-			 		 		"gasPrice":1
-			 			},
-				 "txIndex":1,
-			 	"status":"block"
-				},
-			"id":1542962072982,
-			"jsonrpc":"2.0"
-	 	}
-	}
+	exampleï¼š
+```java
+String jsonStr = 
+SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889"
+, "http://117.50.20.225:8037");
+```
+the successful response message isï¼š
+		
+        {
+                "result":
+                {
+                        "result":
+		        {
+			        "blockHash":"0x00000152de8784bc264cc43d05b1ac5da040141aeb087ca01761a2028b6fd7f7",
+			         "blockHeight":3,
+			         "transaction":
+			         {
+			 	        "gasLimit":3000000,
+			 	        "amount":0,
+			 	        "payload":"",
+			 	        "from":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
+			 	        "to":"0x0a57a2714e193b7ac50475ce625f2dcfb483d741",
+			 	        "accountNonce":0,
+			 	        "hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057",
+			 	        "gasPrice":1
+			        },
+			        "txIndex":1,
+			        "status":"block"
+		        },
+		        "id":1542962072982,
+		        "jsonrpc":"2.0"
+	         }
+        }
 	
-	fail return £º
+the failure response message is ï¼š
+		
 	{
 		errMsg: "leveldb: not found"
 	}
 
 ------------------------------------------------------------------------------
 
-	Method:Key
+## Key
 
 	API:static String key(int shard)
 
 	generate the private key ,the parameter shard must between 1 and 2
 
-	example£º
+	exampleï¼š
+```java
+String jsonStr = KeyManager.key(1);
+```
 
-			String jsonStr = KeyManager.key(1);
-
-
-	success return £º
-	{
-		"result":
+		the successful response message is ï¼š
+		
+		{
+			"result":
 			{
 				"public key":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
 				"private key":"0xa417551e1522d88d8b2c1592f9e273f7f8bf68517195418b4b21d40e17cdaa1f"
 			}
-	}
+		}
 
 ------------------------------------------------------------------------------
 
-	Method:GetAddress
+## GetAddress
 
 	API: static byte[] getAddress(byte[] publicKey)
 
 	get public address by publicKey
 
-	example£º
-
- 			String pubString = "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
- 			byte[] pubKey = Hex.decode(pubString);
- 			String jsonStr = AddressManager.getAddress(pubKey);
+	exampleï¼š
+```java
+String pubString = "0xd6cfa19439827666be5bdc2d169538af4693cb81";
+String address = Hex.toHexString(AddressManager.getAddress(pubString.getBytes()));  
+```
 
 ------------------------------------------------------------------------------
 		
-	To build this project:
+# To build this project:
 	
 	Run $ mvn clean package
 
-	Communication
-		If you need help or have a general question, contact swordsnake@163.com
