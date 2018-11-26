@@ -6,7 +6,7 @@ The program is a maven project.
 
 # Methods
 
-## Mehtod:Sign
+## Sign
 
 	API：static String sign(SignTransactionDTO transactionDTO)
 
@@ -60,9 +60,9 @@ The program is a maven project.
 
 ------------------------------------------------------------------------------
 
-## Method:SendTx
+## SendTx
 
-	API:statci String sendTx(SignTransactionDTO signTransactionDTO,String uri)
+	API:static String sendTx(SignTransactionDTO signTransactionDTO,String uri)
 
 	send transaction , the SignTransactionDTO must be in the example format, otherwise an error will occur.
 
@@ -102,7 +102,7 @@ The program is a maven project.
 
 ------------------------------------------------------------------------------
 
-## Method:Gettxbyhash
+## Gettxbyhash
 
 	API:static String gettxbyhash(String hash,String uri)
 
@@ -148,7 +148,7 @@ The program is a maven project.
 
 ------------------------------------------------------------------------------
 
-## Method:Key
+## Key
 
 	API:static String key(int shard)
 
@@ -171,7 +171,7 @@ The program is a maven project.
 
 ------------------------------------------------------------------------------
 
-## Method:GetAddress
+## GetAddress
 
 	API: static byte[] getAddress(byte[] publicKey)
 
