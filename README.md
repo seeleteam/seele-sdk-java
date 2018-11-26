@@ -28,7 +28,8 @@ The program is a maven project.
 		
         	String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
 ```
-		success return：
+		the successful response message is：
+		
 		{
 			"result":
 		 	{
@@ -51,7 +52,8 @@ The program is a maven project.
 		 	}
 		}
 
-		fail return:
+		the failure response message is:
+		
 		{
 			errMsg: "generateTx failed:"
 		}
@@ -81,7 +83,8 @@ The program is a maven project.
 		
        		String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.50.20.225:8037");
 ```
-		success return：
+		the successful response message is：
+		
 		{
 			"result":
 			{
@@ -91,7 +94,8 @@ The program is a maven project.
 			}
 		}
 
-		fail return：
+		the failure response message is：
+		
 		{
 			errMsg: "error:addTransactionDTO is null"
 		}
@@ -108,7 +112,8 @@ The program is a maven project.
 ```java
 		String jsonStr = SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889", "http://117.50.20.225:8037");
 ```
-		success return：
+		the successful response message is：
+		
 		{
 			"result":
 			{
@@ -135,7 +140,8 @@ The program is a maven project.
 	 		}
 		}
 	
-		fail return ：
+		the failure response message is ：
+		
 		{
 			errMsg: "leveldb: not found"
 		}
@@ -153,7 +159,8 @@ The program is a maven project.
 		String jsonStr = KeyManager.key(1);
 ```
 
-		success return ：
+		the successful response message is ：
+		
 		{
 			"result":
 			{
