@@ -31,8 +31,10 @@ String jsonStr = SeeleTransactionManager.sign(signTransactionDTO);
 the successful response message is：
 		
 {
-	"result":{
-		"data":{
+	"result":
+	{
+		"data":
+		{
 			"from":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
 			"to":"0x0a57a2714e193b7ac50475ce625f2dcfb483d741",
 			"amount":0,
@@ -42,11 +44,9 @@ the successful response message is：
 			"timestamp":0,
 			"payload":""
 			},
-
 			"signature:{
 			"sig":"ob6nXGQy7VKylMPHJTfmxbsJZVQr6HdV2U/dYF/bc9kIU55u/2HMWo16ngsIWlo87aZCqlUY6H5h1+boImfDowA="
 			},
-
 			"hash":"0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb057"
 		}
 }
