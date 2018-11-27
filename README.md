@@ -174,9 +174,9 @@ String jsonStr = KeyManager.key(1);
 
 ## GetAddress
 
-	API: static byte[] getAddress(byte[] publicKey)
+	API: static byte[] getAddress(byte[] pubString)
 
-	get public address by publicKey
+	get public address by pubString
 
 	example：
 ```java
