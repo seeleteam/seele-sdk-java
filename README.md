@@ -180,8 +180,11 @@ String jsonStr = KeyManager.key(1);
 
 	example：
 ```java
-String pubString = "0xd6cfa19439827666be5bdc2d169538af4693cb81";
-String address = Hex.toHexString(AddressManager.getAddress(pubString.getBytes()));  
+ String pubString = 
+ "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75"
+ +"aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
+ byte[] pubKey = Hex.decode(pubString);
+ String address = Hex.toHexString(AddressManager.getAddress(pubKey)); 
 ```
 
 ------------------------------------------------------------------------------
