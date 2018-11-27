@@ -9,7 +9,7 @@ public class AddTransactionDTO {
     private String hash;
 
     private RawTx data;
-    
+
     private SeeleSignature signature;
 
     @JSONField(name = "Data")

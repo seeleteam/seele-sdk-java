@@ -10,7 +10,7 @@ public class KeyManagerTest {
     @Test
     public void testGenerateKey(){
         for(int i = 0 ; i < 20;i++){
-            System.out.println("key"+i+":"+ KeyManager.key(2));
+            System.out.println("key"+i+":"+ KeyManager.key(1));
         }
     }
 }
