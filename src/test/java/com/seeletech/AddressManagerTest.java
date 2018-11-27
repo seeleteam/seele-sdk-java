@@ -4,26 +4,54 @@ import com.alibaba.fastjson.JSON;
 import com.seeletech.core.address.AddressManager;
 import org.junit.Test;
 import org.spongycastle.util.encoders.Hex;
-
 import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class AddressManagerTest {
 
-    private String address = "cd26fc8ee810bbf514075bf966f1d949c3876b71";
-
     @Test
     public void testGetAddress() {
-        String address1 = Hex.toHexString(AddressManager.getAddress("0xd6cfa19439827666be5bdc2d169538af4693cb81".getBytes()));
+        String address = "8be23786d29d615a630ad3f1febb84a4d5acb3a1";
+        String pubString = "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
+        byte[] pubKey = Hex.decode(pubString);
+        String address1 = Hex.toHexString(AddressManager.getAddress(pubKey));
         assertEquals(address, address1);
     }
 
     @Test
     public void testGetBalance() {
-        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501","http://117.50.20.225:8037");
+        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501", "http://117.50.20.225:8037");
         Map mapResult = JSON.parseObject(jsonResult);
-        assertNotNull(((Map)((Map)mapResult.get("result")).get("result")).get("Balance"));
+        assertNotNull(((Map) ((Map) mapResult.get("result")).get("result")).get("Balance"));
+    }
+
+    @Test
+    public void testGetBalanceInvalidAddressLength() {
+        String actualResult = "{\"errMsg\":\"invalid argument 0: invalid address length 2, expected length is 20\"}";
+        String jsonResult = AddressManager.getBalance("0xe95d", "http://117.50.20.225:8037");
+        assertEquals(actualResult,jsonResult);
+    }
+
+    @Test
+    public void testGetBalanceOddLength() {
+        String actualResult = "{\"errMsg\":\"invalid argument 0: hex string of odd length\"}";
+        String jsonResult = AddressManager.getBalance("0xe95", "http://117.50.20.225:8037");
+        assertEquals(actualResult,jsonResult);
+    }
+
+    @Test
+    public void testGetBalanceSyntaxCharaceter() {
+        String actualResult = "{\"errMsg\":\"invalid argument 0: invalid hex string\"}";
+        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d50-", "http://117.50.20.225:8037");
+        assertEquals(actualResult,jsonResult);
+    }
+
+    @Test
+    public void testValidate() {
+        String addr = "4c10f2cd2159bb432094e3be7e17904c2b4aeb2";
+        System.out.println(AddressManager.Validate(addr));
+        assertTrue(AddressManager.Validate(addr));
     }
 }
