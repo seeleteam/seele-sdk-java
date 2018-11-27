@@ -174,16 +174,51 @@ String jsonStr = KeyManager.key(1);
 
 ## GetAddress
 
-	API: static byte[] getAddress(byte[] publicKey)
+	API: static byte[] getAddress(byte[] pubString)
 
-	get public address by publicKey
+	get public address by pubString
 
 	example：
 ```java
-String pubString = "0xd6cfa19439827666be5bdc2d169538af4693cb81";
-String address = Hex.toHexString(AddressManager.getAddress(pubString.getBytes()));  
+ String pubString = 
+ "040947751e3022ecf3016be03ec77ab0ce3c2662b4843898cb068d74f698ccc8ad75"
+ +"aa17564ae80a20bb044ee7a6d903e8e8df624b089c95d66a0570f051e5a05b";
+ byte[] pubKey = Hex.decode(pubString);
+ String address = Hex.toHexString(AddressManager.getAddress(pubKey)); 
 ```
 
+------------------------------------------------------------------------------
+
+## GetBalance
+
+	API: static String getBalance(String accountAddress,String uri)
+
+	get balance by account address
+
+	example：
+```java
+String jsonResult 
+= AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501","http://117.50.20.225:8037"); 
+```
+the successful response message is ：
+		
+	{
+	   "result":
+		{
+		    "result":
+		    {
+			    "Account":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
+			    "Balance":999999832000
+		    },
+		    "id":1543308520798,
+		    "jsonrpc":"2.0"
+		}
+	}
+the failure response message is ：
+		
+	{
+		errMsg: "invalid argument 0: invalid address length 2, expected length is 20"
+	}
 ------------------------------------------------------------------------------
 		
 # To build this project:
