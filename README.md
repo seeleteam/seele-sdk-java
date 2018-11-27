@@ -204,8 +204,8 @@ the successful response message is ：
 		{
 		    "result":
 		    {
-				"Account":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
-				"Balance":999999832000
+			    "Account":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
+			    "Balance":999999832000
 		    },
 		    "id":1543308520798,
 		    "jsonrpc":"2.0"
