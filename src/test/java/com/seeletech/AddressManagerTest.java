@@ -5,9 +5,7 @@ import com.seeletech.core.address.AddressManager;
 import org.junit.Test;
 import org.spongycastle.util.encoders.Hex;
 import java.util.Map;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class AddressManagerTest {
 
@@ -49,9 +47,17 @@ public class AddressManagerTest {
     }
 
     @Test
+    public void testValidateInvalid() {
+        String[] types = new String[]{"0", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"};
+        for(String type : types) {
+            String addr = "4c10f2cd2159bb432094e3be7e17904c2b4aeb2"+type;
+            assertFalse(AddressManager.addressValidate(addr));
+        }
+    }
+
+    @Test
     public void testValidate() {
-        String addr = "4c10f2cd2159bb432094e3be7e17904c2b4aeb2";
-        System.out.println(AddressManager.Validate(addr));
-        assertTrue(AddressManager.Validate(addr));
+        String addr = "4c10f2cd2159bb432094e3be7e17904c2b4aeb21";
+        assertTrue(AddressManager.addressValidate(addr));
     }
 }

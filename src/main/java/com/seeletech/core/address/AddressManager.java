@@ -58,7 +58,7 @@ public class AddressManager {
 
         return JSON.toJSONString(httpResult);
     }
-    public static boolean Validate(String address){
+    public static boolean addressValidate(String address){
         if(StringUtils.isEmpty(address)){
             return false;
         }
@@ -81,7 +81,11 @@ public class AddressManager {
     }
 
     private static boolean isReserved(byte[] addrArr){
-        byte[] MaxSystemContractAddress = new byte[]{4,(byte)255};
+        byte[] b = new byte[20];
+        b[18] = 4;
+        b[19] = (byte)255;
+        byte[] MaxSystemContractAddress = b ;
+
         return comp(addrArr,MaxSystemContractAddress,0) <= 0;
     }
 
@@ -91,6 +95,7 @@ public class AddressManager {
         if(bs.length > addr.length){
             bs = Arrays.copyOfRange(bs,bs.length-addr.length,bs.length-1);
         }
+
         addr = Arrays.copyOfRange(bs,0,bs.length-1);
 
         return addr;
@@ -98,11 +103,11 @@ public class AddressManager {
 
     public static int comp(byte[] a,byte[] b,int i)
     {
-        if(a[i]<b[i]){
+        if(a[i]>b[i]){
             return 1;
-        }else if(a[i]>b[i]){
+        }else if(a[i]<b[i]){
             return -1;
-        } else {
+        }else {
             i++;
             return comp(a,b,i);
         }
