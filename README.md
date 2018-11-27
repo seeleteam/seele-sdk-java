@@ -185,6 +185,38 @@ String address = Hex.toHexString(AddressManager.getAddress(pubString.getBytes())
 ```
 
 ------------------------------------------------------------------------------
+
+## GetBalance
+
+	API: static String getBalance(String accountAddress,String uri)
+
+	get balance by account address
+
+	example：
+```java
+String jsonResult 
+= AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501","http://117.50.20.225:8037"); 
+```
+the successful response message is ：
+		
+	{
+	   "result":
+		{
+		    "result":
+		    {
+				"Account":"0xe95d99fec90954eb8f6f899c188aef5caa20d501",
+				"Balance":999999832000
+		    },
+		    "id":1543308520798,
+		    "jsonrpc":"2.0"
+		}
+	}
+the failure response message is ：
+		
+	{
+		errMsg: "invalid argument 0: invalid address length 2, expected length is 20"
+	}
+------------------------------------------------------------------------------
 		
 # To build this project:
 	
