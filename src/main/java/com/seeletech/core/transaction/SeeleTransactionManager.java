@@ -18,7 +18,10 @@ import com.seeletech.util.request.RequestUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.ethereum.crypto.ECKey;
 import org.spongycastle.util.encoders.Hex;
+
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 public class SeeleTransactionManager {
 
@@ -94,9 +97,10 @@ public class SeeleTransactionManager {
     public static String getTxByHash(String hash, String uri) {
         String requestJson = null;
         HttpResult httpResult = new HttpResult();
-
+        List<Object> list = new ArrayList();
+        list.add(hash);
         try {
-            requestJson = RequestUtil.getRequestJson("getTransactionByHash", hash);
+            requestJson = RequestUtil.getRequestJson("getTransactionByHash", list);
         } catch (JsonProcessingException e) {
             httpResult.setErrMsg("requestJson is valid:" + e.getMessage());
             return JSON.toJSONString(httpResult);
@@ -155,9 +159,11 @@ public class SeeleTransactionManager {
             return httpResult;
         }
 
+        List<Object> list = new ArrayList<>();
+        list.add(transaction);
         String requestJson = null;
         try {
-            requestJson = RequestUtil.getRequestJson(methodName, transaction);
+            requestJson = RequestUtil.getRequestJson(methodName,list );
         } catch (JsonProcessingException e) {
             httpResult.setErrMsg("requestJson is valid:" + e.getMessage());
             return httpResult;

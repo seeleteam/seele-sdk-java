@@ -1,8 +1,16 @@
 package com.seeletech.core.address;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.seeletech.util.HttpResult;
+import com.seeletech.util.constant.HttpClientConstant;
+import com.seeletech.util.http.HttpClientUitl;
+import com.seeletech.util.request.RequestUtil;
 import org.ethereum.crypto.HashUtil;
 import org.ethereum.util.RLP;
+import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class AddressManager {
 
@@ -21,5 +29,29 @@ public class AddressManager {
         addr[19] |= b;
 
         return addr;
+    }
+
+    /**
+     *
+     * @param accountAddress
+     * @return
+     */
+    public static String getBalance(String accountAddress,String uri){
+        String requestJson = null;
+        HttpResult httpResult = new HttpResult();
+        List<Object> list = new ArrayList<>();
+        list.add(accountAddress);
+        list.add("");
+        list.add(-1);
+
+        try {
+            requestJson = RequestUtil.getRequestJson("getBalance", list);
+        } catch (JsonProcessingException e) {
+            httpResult.setErrMsg("requestJson is valid:" + e.getMessage());
+            return JSON.toJSONString(httpResult);
+        }
+        httpResult = HttpClientUitl.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
+
+        return JSON.toJSONString(httpResult);
     }
 }
