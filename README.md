@@ -101,16 +101,16 @@ String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.
 
 ------------------------------------------------------------------------------
 
-## Gettxbyhash
+## GetTxByHash
 
-	API:static String gettxbyhash(String hash,String uri)
+	API:static String getTxByHash(String hash,String uri)
 
 	get transaction by hash, the hash must be in the example format(64 length), otherwise an error will occur.
 
 	example：
 ```java
 String jsonStr = 
-SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889"
+SeeleTransactionManager.getTxByHash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889"
 , "http://117.50.20.225:8037");
 ```
 the successful response message is：
