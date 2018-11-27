@@ -103,7 +103,7 @@ String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.
 
 ## GetTxByHash
 
-	API:static String gettxbyhash(String hash,String uri)
+	API:static String getTxByHash(String hash,String uri)
 
 	get transaction by hash, the hash must be in the example format(64 length), otherwise an error will occur.
 
