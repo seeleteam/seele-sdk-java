@@ -110,7 +110,7 @@ String jsonStr = SeeleTransactionManager.sendTx(signTransactionDTO, "http://117.
 	example：
 ```java
 String jsonStr = 
-SeeleTransactionManager.gettxbyhash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889"
+SeeleTransactionManager.getTxByHash("0x03f097fef1bbda18257b020b80a3a79834bcd324635fcc4f932173c1767c2889"
 , "http://117.50.20.225:8037");
 ```
 the successful response message is：
