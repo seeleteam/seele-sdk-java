@@ -220,6 +220,20 @@ the failure response message is ：
 		errMsg: "invalid argument 0: invalid address length 2, expected length is 20"
 	}
 ------------------------------------------------------------------------------
+
+## AddressValidate
+
+	API: static boolean addressValidate(String address)
+
+	Check whether the address is legitimate.If success return true,otherwise return false.
+
+	example：
+```java
+String addr = "4c10f2cd2159bb432094e3be7e17904c2b4aeb21";
+boolean isSuccess = AddressManager.addressValidate(addr)
+```
+
+------------------------------------------------------------------------------
 		
 # To build this project:
 	
