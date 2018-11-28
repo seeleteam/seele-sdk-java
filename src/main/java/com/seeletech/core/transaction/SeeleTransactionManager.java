@@ -213,7 +213,7 @@ public class SeeleTransactionManager {
             SignTransactionDTO txDTO = (SignTransactionDTO) obj;
             if (StringUtils.isEmpty(txDTO.getRawTx().getFrom())) {
                 msg = "transaction from address is empty";
-            } else if (StringUtils.isEmpty(txDTO.getRawTx().getTo())) {
+            } else if (txDTO.getRawTx().getTo() != null && "".equals(txDTO.getRawTx().getTo())) {
                 msg = "transaction to address is empty";
             }
         }

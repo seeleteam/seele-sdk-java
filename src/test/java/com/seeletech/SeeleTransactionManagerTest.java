@@ -2,6 +2,7 @@ package com.seeletech;
 
 import com.seeletech.core.transaction.SeeleTransactionManager;
 import com.seeletech.model.RawTx;
+import com.seeletech.model.SeeleSignature;
 import com.seeletech.model.dto.SignTransactionDTO;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -82,6 +83,25 @@ public class SeeleTransactionManagerTest {
         signTransactionDTO.setRawTx(rawTx);
         String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://117.50.20.225:8037");
         assertEquals(actualResult, jsonResult);
+    }
+
+    @Test
+    public void testSendTxForCreateContracts(){
+        String actualResult = "{\"result\":{\"result\":true,\"id\":1543387166264,\"jsonrpc\":\"2.0\"}}";
+        SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
+        signTransactionDTO.setPrivateKey("0xa417551e1522d88d8b2c1592f9e273f7f8bf68517195418b4b21d40e17cdaa1f");
+        RawTx rawTx = new RawTx();
+        rawTx.setTo(null);
+        rawTx.setFrom("0xe95d99fec90954eb8f6f899c188aef5caa20d501");
+        rawTx.setAmount(0);
+        rawTx.setAccountNonce(19);
+        rawTx.setTimestamp(0);
+        rawTx.setPayload("0x0a57a2714e193b7ac50475ce625f2dcfb483d765");
+        rawTx.setGasPrice(1);
+        rawTx.setGasLimit(3000000);
+        signTransactionDTO.setRawTx(rawTx);
+        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://117.50.20.225:8037");
+        assertEquals(actualResult.substring(0,actualResult.indexOf("id")), jsonResult.substring(0,jsonResult.indexOf("id")));
     }
 
     @Test

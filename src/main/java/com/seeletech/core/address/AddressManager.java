@@ -72,7 +72,7 @@ public class AddressManager {
 
         return true;
     }
-    private static byte getAddressType(byte[] addrArr){
+    private static byte getAddressType(byte addrArr[]){
         if(isReserved(addrArr)){
             return AddressConstant.AddressTypeReserved;
         }
@@ -80,36 +80,29 @@ public class AddressManager {
         return (byte)(addrArr[AddressConstant.AddressLen-1] & 0x0F);
     }
 
-    private static boolean isReserved(byte[] addrArr){
-        byte[] b = new byte[20];
+    private static boolean isReserved(byte addrArr[]){
+        byte b[] = new byte[20];
         b[18] = 4;
         b[19] = (byte)255;
-        byte[] MaxSystemContractAddress = b ;
+        byte MaxSystemContractAddress[] = b ;
 
-        return comp(addrArr,MaxSystemContractAddress,0) <= 0;
+        return comparenTwoArray(addrArr,MaxSystemContractAddress,addrArr.length,MaxSystemContractAddress.length) <= 0;
     }
 
-    public static byte[] BytesToAddress(byte[] bs){
-        byte[] addr = new byte[20];
-
-        if(bs.length > addr.length){
-            bs = Arrays.copyOfRange(bs,bs.length-addr.length,bs.length-1);
+    static int comparenTwoArray(byte a[],byte b[],int aLen,int bLen){
+        int i=0,j=0;
+        while(i<aLen&&j<bLen){
+            if(a[i]==b[j]){
+                i++;
+                j++;
+            }else{
+                return a[i]>b[j]?1:-1;
+            }
         }
-
-        addr = Arrays.copyOfRange(bs,0,bs.length-1);
-
-        return addr;
-    }
-
-    public static int comp(byte[] a,byte[] b,int i)
-    {
-        if(a[i]>b[i]){
-            return 1;
-        }else if(a[i]<b[i]){
-            return -1;
-        }else {
-            i++;
-            return comp(a,b,i);
+        if(i==aLen&&j==bLen){
+            return 0;
+        }else{
+            return i==aLen?-1:1;
         }
     }
 }
