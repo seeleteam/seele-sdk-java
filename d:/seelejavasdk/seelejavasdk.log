@@ -1,0 +1,8 @@
+[16:02:29:263][INFO][main][general.<init>:187] - Config ( yes ): default properties from resource 'ethereumj.conf'
+[16:02:29:268][INFO][main][general.<init>:190] - Config ( no  ): user properties from -Dethereumj.conf.res resource(s) 'null'
+[16:02:29:280][INFO][main][general.<init>:192] - Config ( yes ): user properties from resource 'user.conf'
+[16:02:29:282][INFO][main][general.<init>:195] - Config ( no  ): user properties from file '/Users/timy/eclipse-workspace/muyi/seele-sdk-java/config/ethereumj.conf'
+[16:02:29:283][INFO][main][general.<init>:197] - Config ( no  ): test properties from resource 'test-ethereumj.conf'
+[16:02:29:284][INFO][main][general.<init>:199] - Config ( no  ): test properties from resource 'test-user.conf'
+[16:02:29:286][INFO][main][general.<init>:202] - Config ( no  ): user properties from -Dethereumj.conf.file file(s) 'null'
+[16:02:29:286][INFO][main][general.<init>:203] - Config ( no  ): config passed via constructor

@@ -20,25 +20,25 @@ public class HashUtil {
 
         try{
             if(tx.getData().getTo() != null){
-                a[0] = Hex.decode(tx.getData().getFrom().trim().substring(2));
-                a[1] =  Hex.decode(tx.getData().getTo().trim().substring(2));
+                a[1] = Hex.decode(tx.getData().getFrom().trim().substring(2));
+                a[2] = Hex.decode(tx.getData().getTo().trim().substring(2));
             }else{
                 a= new byte[fieldArr.length+1][];
-                a[0] = Hex.decode(tx.getData().getFrom().trim().substring(2));
-                a[1] =  Hex.decode("0x0000000000000000000000000000000000000000".substring(2));
+                a[1] = Hex.decode(tx.getData().getFrom().trim().substring(2));
+                a[2] = Hex.decode("0x0000000000000000000000000000000000000000".substring(2));
             }
-
-            a[2] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getAmount());
-            a[3] =  ByteUtil.longToBytesNoLeadZeroes(tx.getData().getAccountNonce());
-            a[4] =  ByteUtil.longToBytesNoLeadZeroes(tx.getData().getGasPrice());
-            a[5] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getGasLimit());
-            a[6] =  ByteUtil.longToBytesNoLeadZeroes(tx.getData().getTimestamp());
+            a[0] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getType());
+            a[3] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getAmount());
+            a[4] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getAccountNonce());
+            a[5] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getGasPrice());
+            a[6] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getGasLimit());
+            a[7] = ByteUtil.longToBytesNoLeadZeroes(tx.getData().getTimestamp());
 
             if(null != tx.getData().getPayload()){
                 if(!"".equals(tx.getData().getPayload())){
-                    a[7] = Hex.decode(tx.getData().getPayload().trim().substring(2));
+                    a[8] = Hex.decode(tx.getData().getPayload().trim().substring(2));
                 }else{
-                    a[7] = Hex.decode(tx.getData().getPayload().trim());
+                    a[8] = Hex.decode(tx.getData().getPayload().trim());
                 }
             }
         }catch(Exception e){
