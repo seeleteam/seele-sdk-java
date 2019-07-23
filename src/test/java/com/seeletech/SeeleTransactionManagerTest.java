@@ -82,7 +82,7 @@ public class SeeleTransactionManagerTest {
         rawTx.setGasPrice(1);
         rawTx.setGasLimit(3000000);
         signTransactionDTO.setRawTx(rawTx);
-        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://104.218.164.169:8037");
+        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
         assertEquals(actualResult, jsonResult);
     }
     // disabled till contracts more solidified
@@ -101,7 +101,7 @@ public class SeeleTransactionManagerTest {
     //     rawTx.setGasPrice(1);
     //     rawTx.setGasLimit(3000000);
     //     signTransactionDTO.setRawTx(rawTx);
-    //     String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://104.218.164.169:8037");
+    //     String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
     //     assertEquals(actualResult.substring(0,actualResult.indexOf("id")), jsonResult.substring(0,jsonResult.indexOf("id")));
     // }
 
@@ -120,7 +120,7 @@ public class SeeleTransactionManagerTest {
         rawTx.setGasPrice(1);
         rawTx.setGasLimit(3000000);
         signTransactionDTO.setRawTx(rawTx);
-        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://104.218.164.169:8037");
+        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
         assertEquals(actualResult, jsonResult);
     }
 
@@ -140,7 +140,7 @@ public class SeeleTransactionManagerTest {
         rawTx.setGasPrice(10);
         rawTx.setGasLimit(200000);
         signTransactionDTO.setRawTx(rawTx);
-        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://104.218.164.169:8037");
+        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
         assertEquals(actualResult.substring(0,actualResult.indexOf("tx nonce")), jsonResult.substring(0,jsonResult.indexOf("tx nonce")));
     }
 
@@ -148,7 +148,7 @@ public class SeeleTransactionManagerTest {
     public void testGetTxByHash(){
       String actualResult = "{\"result\":{\"result\":{\"blockHash\":\"0x24db76754e870c62692d04f1014b02837aa8c7203483be221ba65bf099039434\",\"blockHeight\":2,\"transaction\":{\"gasLimit\":0,\"amount\":600000000,\"payload\":\"\",\"from\":\"0x0000000000000000000000000000000000000000\",\"to\":\"0x22858208a1d6402afd4cc504518513b60d43a311\",\"accountNonce\":0,\"hash\":\"0xb0d9e6c7665c2f1fbfcfda8b8fb95875ab145dfda39dff00a9339db303a174d7\",\"gasPrice\":0},\"txIndex\":0,\"status\":\"block\"},\"id\":1563580036311,\"jsonrpc\":\"2.0\"}}";
       actualResult = actualResult.substring(0,actualResult.indexOf("id"));
-      String jsonResult = SeeleTransactionManager.getTxByHash("0xb0d9e6c7665c2f1fbfcfda8b8fb95875ab145dfda39dff00a9339db303a174d7","http://104.218.164.169:8037");
+      String jsonResult = SeeleTransactionManager.getTxByHash("0xb0d9e6c7665c2f1fbfcfda8b8fb95875ab145dfda39dff00a9339db303a174d7","http://127.0.0.1:8037");
       jsonResult = jsonResult.substring(0,jsonResult.indexOf("id"));
       assertEquals(actualResult, jsonResult);
     }
@@ -156,28 +156,28 @@ public class SeeleTransactionManagerTest {
     @Test
     public void testGetTxByHashFailed(){
         String actualResult = "{\"errMsg\":\"leveldb: not found\"}";
-        String jsonResult = SeeleTransactionManager.getTxByHash("0x12","http://104.218.164.169:8037");
+        String jsonResult = SeeleTransactionManager.getTxByHash("0x12","http://127.0.0.1:8037");
         assertEquals(actualResult, jsonResult);
     }
 
     @Test
     public void testGetTxByHashOddLength(){
         String actualResult = "{\"errMsg\":\"hex string of odd length\"}";
-        String jsonResult = SeeleTransactionManager.getTxByHash("0x1","http://104.218.164.169:8037");
+        String jsonResult = SeeleTransactionManager.getTxByHash("0x1","http://127.0.0.1:8037");
         assertEquals(actualResult, jsonResult);
     }
 
     @Test
     public void testGetTxByHashWithoutPrefix0x(){
         String actualResult = "{\"errMsg\":\"hex string without 0x prefix\"}";
-        String jsonResult = SeeleTransactionManager.getTxByHash("12","http://104.218.164.169:8037");
+        String jsonResult = SeeleTransactionManager.getTxByHash("12","http://127.0.0.1:8037");
         assertEquals(actualResult, jsonResult);
     }
 
     @Test
     public void testGetTxByHashSyntaxCharaceter(){
         String actualResult = "{\"errMsg\":\"invalid hex string\"}";
-        String jsonResult = SeeleTransactionManager.getTxByHash("0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb05-","http://104.218.164.169:8037");
+        String jsonResult = SeeleTransactionManager.getTxByHash("0x78be64c6d3c1438184713f3dc1c207eeb93543d82808292b8ce74019511cb05-","http://127.0.0.1:8037");
         assertEquals(actualResult, jsonResult);
     }
 }
