@@ -35,6 +35,7 @@ public class SeeleTransactionManagerTest {
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         signTransactionDTO.setPrivateKey("0xa417551e1522d88d8b2c1592f9e273f7f8bf68517195418b4b21d40e17cdaa1f");
         RawTx rawTx = new RawTx();
+        rawTx.setType(0);
         rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
         rawTx.setFrom("");
         rawTx.setAmount(0);
@@ -54,6 +55,7 @@ public class SeeleTransactionManagerTest {
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         signTransactionDTO.setPrivateKey("0xa417551e1522d88d8b2c1592f9e273f7f8bf68517195418b4b21d40e17cdaa1f");
         RawTx rawTx = new RawTx();
+        rawTx.setType(0);
         rawTx.setTo("");
         rawTx.setFrom("0xe95d99fec90954eb8f6f899c188aef5caa20d501");
         rawTx.setAmount(0);
@@ -73,6 +75,7 @@ public class SeeleTransactionManagerTest {
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         signTransactionDTO.setPrivateKey("0xa417551e1522d88d8b2c1592f9e273f7f8bf68517195418b4b21d40e17cdaa1f");
         RawTx rawTx = new RawTx();
+        rawTx.setType(0);
         rawTx.setTo("0x0a57a2714e193b7ac50475ce625f2dcfb483d741");
         rawTx.setFrom("");
         rawTx.setAmount(0);
@@ -85,25 +88,26 @@ public class SeeleTransactionManagerTest {
         String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
         assertEquals(actualResult, jsonResult);
     }
-    // disabled till contracts more solidified
-    // @Test
-    // public void testSendTxForCreateContracts(){
-    //     String actualResult = "{\"result\":{\"result\":true,\"id\":1543387166264,\"jsonrpc\":\"2.0\"}}";
-    //     SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
-    //     signTransactionDTO.setPrivateKey("0xa417551e1522d88d8b2c1592f9e273f7f8bf68517195418b4b21d40e17cdaa1f");
-    //     RawTx rawTx = new RawTx();
-    //     rawTx.setTo(null);
-    //     rawTx.setFrom("0xe95d99fec90954eb8f6f899c188aef5caa20d501");
-    //     rawTx.setAmount(0);
-    //     rawTx.setAccountNonce(19);
-    //     rawTx.setTimestamp(0);
-    //     rawTx.setPayload("0x0a57a2714e193b7ac50475ce625f2dcfb483d765");
-    //     rawTx.setGasPrice(1);
-    //     rawTx.setGasLimit(3000000);
-    //     signTransactionDTO.setRawTx(rawTx);
-    //     String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
-    //     assertEquals(actualResult.substring(0,actualResult.indexOf("id")), jsonResult.substring(0,jsonResult.indexOf("id")));
-    // }
+    
+    @Test
+    public void testSendTxForCreateContracts(){
+        String actualResult = "{\"result\":{\"result\":true,\"id\":1543387166264,\"jsonrpc\":\"2.0\"}}";
+        SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
+        signTransactionDTO.setPrivateKey("0xd117eeae7189d461ceca53f8c6ed24e148ff47c68f36d1560d658aaaa7b8c8e1");
+        RawTx rawTx = new RawTx();
+        rawTx.setType(0);
+        rawTx.setTo(null);
+        rawTx.setFrom("0x9d5bc073176b3911c1bb05970decca89723426b1");
+        rawTx.setAmount(0);
+        rawTx.setAccountNonce(19);
+        rawTx.setTimestamp(0);
+        rawTx.setPayload("0x0a57a2714e193b7ac50475ce625f2dcfb483d765");
+        rawTx.setGasPrice(1);
+        rawTx.setGasLimit(3000000);
+        signTransactionDTO.setRawTx(rawTx);
+        String jsonResult = SeeleTransactionManager.sendTx(signTransactionDTO,"http://127.0.0.1:8037");
+        assertEquals(actualResult.substring(0,actualResult.indexOf("id")), jsonResult.substring(0,jsonResult.indexOf("id")));
+    }
 
     @Test
     public void testSendTxEmptyTo(){
@@ -111,6 +115,7 @@ public class SeeleTransactionManagerTest {
         SignTransactionDTO signTransactionDTO = new SignTransactionDTO();
         signTransactionDTO.setPrivateKey("0xa417551e1522d88d8b2c1592f9e273f7f8bf68517195418b4b21d40e17cdaa1f");
         RawTx rawTx = new RawTx();
+        rawTx.setType(0);
         rawTx.setTo("");
         rawTx.setFrom("0xe95d99fec90954eb8f6f899c188aef5caa20d501");
         rawTx.setAmount(0);
