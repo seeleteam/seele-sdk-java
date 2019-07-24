@@ -3,7 +3,8 @@ package com.seeletech.model;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class RawTx {
-
+    private long type;
+    
     private String from;
 
     private String to;
@@ -19,6 +20,15 @@ public class RawTx {
     private long timestamp;
 
     private String payload;
+    
+    @JSONField(name = "Type")
+    public long getType(){
+        return type;
+    }
+    
+    public void setType(long type){
+        this.type = type;
+    }
 
     @JSONField(name = "From")
     public String getFrom() {
@@ -90,5 +100,19 @@ public class RawTx {
 
     public void setPayload(String payload) {
         this.payload = payload;
+    }
+    
+    
+    
+    public void showTx(){
+      // System.out.println(this.type);
+      System.out.println(this.from);
+      System.out.println(this.to);
+      System.out.println(this.amount);
+      System.out.println(this.accountNonce);
+      System.out.println(this.gasPrice);
+      System.out.println(this.gasLimit);
+      System.out.println(this.timestamp);
+      System.out.println(this.payload);
     }
 }

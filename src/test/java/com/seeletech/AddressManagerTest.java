@@ -20,7 +20,7 @@ public class AddressManagerTest {
 
     @Test
     public void testGetBalance() {
-        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501", "http://117.50.20.225:8037");
+        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501", "http://127.0.0.1:8037");
         Map mapResult = JSON.parseObject(jsonResult);
         assertNotNull(((Map) ((Map) mapResult.get("result")).get("result")).get("Balance"));
     }
@@ -28,21 +28,21 @@ public class AddressManagerTest {
     @Test
     public void testGetBalanceInvalidAddressLength() {
         String actualResult = "{\"errMsg\":\"invalid argument 0: invalid address length 2, expected length is 20\"}";
-        String jsonResult = AddressManager.getBalance("0xe95d", "http://117.50.20.225:8037");
+        String jsonResult = AddressManager.getBalance("0xe95d", "http://127.0.0.1:8037");
         assertEquals(actualResult,jsonResult);
     }
 
     @Test
     public void testGetBalanceOddLength() {
         String actualResult = "{\"errMsg\":\"invalid argument 0: hex string of odd length\"}";
-        String jsonResult = AddressManager.getBalance("0xe95", "http://117.50.20.225:8037");
+        String jsonResult = AddressManager.getBalance("0xe95", "http://127.0.0.1:8037");
         assertEquals(actualResult,jsonResult);
     }
 
     @Test
     public void testGetBalanceSyntaxCharaceter() {
         String actualResult = "{\"errMsg\":\"invalid argument 0: invalid hex string\"}";
-        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d50-", "http://117.50.20.225:8037");
+        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d50-", "http://127.0.0.1:8037");
         assertEquals(actualResult,jsonResult);
     }
 
