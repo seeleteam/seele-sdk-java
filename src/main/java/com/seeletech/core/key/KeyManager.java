@@ -45,7 +45,7 @@ public class KeyManager {
      * @param addr byte[]
      * @return int
      */
-    private static int shard(byte[] addr) {
+    public static int shard(byte[] addr) {
         int sum = 0;
 
         // sum [0:18]
