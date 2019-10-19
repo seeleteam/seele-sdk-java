@@ -20,11 +20,16 @@ public class AddressManagerTest {
 
     @Test
     public void testGetBalance() {
-        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501", "http://127.0.0.1:8037");
+        String jsonResult = AddressManager.getBalance("0xe95d99fec90954eb8f6f899c188aef5caa20d501", "http://117.50.82.193:8037");
         Map mapResult = JSON.parseObject(jsonResult);
         assertNotNull(((Map) ((Map) mapResult.get("result")).get("result")).get("Balance"));
     }
-
+    @Test
+    public void testGetNonce() {
+        String jsonResult = AddressManager.getNonce("0xe95d99fec90954eb8f6f899c188aef5caa20d501", "http://117.50.82.193:8037");
+        Map mapResult = JSON.parseObject(jsonResult);
+        assertNotNull(( ((Map) mapResult.get("result")).get("result")));
+    }
     @Test
     public void testGetBalanceInvalidAddressLength() {
         String actualResult = "{\"errMsg\":\"invalid argument 0: invalid address length 2, expected length is 20\"}";

@@ -13,7 +13,7 @@ import com.seeletech.util.bean.BeanUtil;
 import com.seeletech.util.constant.HttpClientConstant;
 import com.seeletech.util.exception.BaseException;
 import com.seeletech.util.hash.HashUtil;
-import com.seeletech.util.http.HttpClientUitl;
+import com.seeletech.util.http.HttpClientUtil;
 import com.seeletech.util.request.RequestUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.ethereum.crypto.ECKey;
@@ -65,25 +65,17 @@ public class SeeleTransactionManager {
     /**
      * send transaction,if any error occur then return error message,otherwise return a json string
      *
-     * @param signTransactionDTO
+     * @param tx
      * @param uri
      * @return String
      */
-    public static String sendTx(SignTransactionDTO signTransactionDTO, String uri) {
+    public static String sendTx(Transaction tx, String uri) {
         HttpResult httpResult = new HttpResult();
-        String msg = checkBlank(signTransactionDTO);
-        if (!StringUtils.isEmpty(msg)) {
-            httpResult.setErrMsg(msg);
-            return JSON.toJSONString(httpResult);
-        }
-
-        AddTransactionDTO addTransactionDTO = getAddTransactionDTO(signTransactionDTO);
-        if (addTransactionDTO != null) {
-            httpResult = addTx("addTx", addTransactionDTO, httpResult, uri);
+        if (tx != null && tx.getData()!=null && tx.getHash()!=null && tx.getSignature()!=null) {
+            httpResult = addTx(tx, uri);
         } else {
-            httpResult.setErrMsg("error:addTransactionDTO is null");
+            httpResult.setErrMsg("error:input tx not valid");
         }
-
         return JSON.toJSONString(httpResult);
     }
 
@@ -105,7 +97,7 @@ public class SeeleTransactionManager {
             httpResult.setErrMsg("requestJson is valid:" + e.getMessage());
             return JSON.toJSONString(httpResult);
         }
-        httpResult = HttpClientUitl.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
+        httpResult = HttpClientUtil.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
 
         return JSON.toJSONString(httpResult);
     }
@@ -117,7 +109,7 @@ public class SeeleTransactionManager {
      * @return Transaction
      * @throws BaseException
      */
-    private static Transaction generateTx(SignTransactionDTO transactionDTO) throws BaseException {
+    public static Transaction generateTx(SignTransactionDTO transactionDTO) throws BaseException {
         String privatekey = transactionDTO.getPrivateKey();
         if (privatekey.startsWith("0x")) {
             privatekey = privatekey.substring(2);
@@ -146,30 +138,23 @@ public class SeeleTransactionManager {
     /**
      * send transaction to go server by JSON-RPC
      *
-     * @param methodName
-     * @param transaction
-     * @param httpResult
+     * @param tx
      * @param uri
      * @return HttpResult
      */
-    private static HttpResult addTx(String methodName, AddTransactionDTO transaction, HttpResult httpResult, String uri) {
-        String msg = checkBlank(transaction);
-        if (!StringUtils.isEmpty(msg)) {
-            httpResult.setErrMsg(msg);
-            return httpResult;
-        }
-
+    private static HttpResult addTx(Transaction tx,String uri) {
+        HttpResult httpResult = new HttpResult();
         List<Object> list = new ArrayList<>();
-        list.add(transaction);
+        list.add(tx);
         String requestJson = null;
         try {
-            requestJson = RequestUtil.getRequestJson(methodName,list );
+            requestJson = RequestUtil.getRequestJson("addTx",list );
         } catch (JsonProcessingException e) {
-            httpResult.setErrMsg("requestJson is valid:" + e.getMessage());
+            httpResult.setErrMsg("requestJson is invalid:" + e.getMessage());
             return httpResult;
         }
 
-        return HttpClientUitl.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
+        return HttpClientUtil.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
     }
 
     /**
@@ -220,4 +205,6 @@ public class SeeleTransactionManager {
 
         return msg;
     }
+
+
 }

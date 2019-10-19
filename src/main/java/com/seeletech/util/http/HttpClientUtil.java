@@ -19,7 +19,7 @@ import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.UUID;
 
-public class HttpClientUitl {
+public class HttpClientUtil {
 
     public static HttpResult httpPostWithJson(String jsonObjStr, String url, int timeout, String user, String password) {
         HttpResult result = new HttpResult();
