@@ -2,7 +2,7 @@ package com.seeletech.util.response;
 
 public class ResponseUtil {
 
-    private int id;
+    private long id;
 
     private String jsonrpc;
 
@@ -12,11 +12,11 @@ public class ResponseUtil {
 
     private ResSuccess success;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
