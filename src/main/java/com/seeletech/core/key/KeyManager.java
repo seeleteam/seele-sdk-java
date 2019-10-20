@@ -69,12 +69,11 @@ public class KeyManager {
      */
     private static int byteArrayToInt(byte[] bytes) {
         int value = 0;
-
-        for (int i = 0; i < 2; i++) {
-            int shift = (2 - 1 - i) * 8;
+        int length = bytes.length;
+        for (int i = 0; i <length; i++) {
+            int shift = (length - 1 - i) * 8;
             value += (bytes[i] & 0x000000FF) << shift;
         }
-
         return value;
     }
 }
