@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seeletech.util.HttpResult;
 import com.seeletech.util.constant.AddressConstant;
 import com.seeletech.util.constant.HttpClientConstant;
-import com.seeletech.util.http.HttpClientUitl;
+import com.seeletech.util.http.HttpClientUtil;
 import com.seeletech.util.request.RequestUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.ethereum.crypto.HashUtil;
@@ -54,10 +54,34 @@ public class AddressManager {
             httpResult.setErrMsg("requestJson is valid:" + e.getMessage());
             return JSON.toJSONString(httpResult);
         }
-        httpResult = HttpClientUitl.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
+        httpResult = HttpClientUtil.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
 
         return JSON.toJSONString(httpResult);
     }
+
+    /**
+     * get nonce by account address
+     * @param accountAddress
+     * @return String
+     */
+    public static String getNonce(String accountAddress,String uri){
+        String requestJson = null;
+        HttpResult httpResult = new HttpResult();
+        List<Object> list = new ArrayList<>();
+        list.add(accountAddress);
+        list.add("");
+        list.add(-1);
+
+        try {
+            requestJson = RequestUtil.getRequestJson("getAccountNonce", list);
+        } catch (JsonProcessingException e) {
+            httpResult.setErrMsg("requestJson is valid:" + e.getMessage());
+            return JSON.toJSONString(httpResult);
+        }
+        httpResult = HttpClientUtil.httpPostWithJson(requestJson, uri, HttpClientConstant.TIMEOUT, null, null);
+        return JSON.toJSONString(httpResult);
+    }
+
     public static boolean addressValidate(String address){
         if(StringUtils.isEmpty(address)){
             return false;
